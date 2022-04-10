@@ -1,0 +1,40 @@
+一、
+发来的请求会进入urlpatters列表顺次匹配正则表达式，匹配成功的进入url()的第二个参数指定的去向。
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('test', include('test1.urls')),
+    path(r'^', include('test2.urls')),
+]
+
+发来请求如果是ip:端口/aaa/bbb/?a=23,类似这样的格式，到这里匹配的时候会被django拆分剩下aaa/bbb/来匹配。
+第一个 admin.site.urls 表示django的后台数据库管理页面。
+第二个是发来请求如果是 127.0.0.1:8000/test/xxx/xxx/,test/xxx/xxx/来匹配,会和第二项匹配成功,
+匹配成功后会删去匹配成功的部分 剩下xxx/xxx 去url的第二个参数include("test1.ulrs") 去匹配,
+指的是去test1应用模块下的urls.py继续正则匹配.
+第三个是指任何匹配到这里的都能成功，然后转向test2应用下的urls.py继续正则匹配。
+
+二、
+从上一部项目的urls.py匹配后,跳转到应用的urls.py当中，再进入urlpatters依次匹配,
+与正则匹配成功的会去执行第二个参数指定的函数：
+from . import views
+urlpatterns = [
+	path('index/', view.index),
+	path('add/', view.add),
+]
+如果剩下的字符串是index/则会去views.py当中寻找index函数.是add/则寻找add函数并执行，
+在views.py中，定义函数名称要与匹配成功的结果相一致。
+
+三、
+获取传递的值：
+通过url匹配的方式，有两种方式给views视图函数传递参数：位置参数、关键字参数
+1、直接使用小括号给正则表达式分组，通过位置参数传递给视图。
+path('delete/(\d{4})/(\w+)/',views.show_arg),
+之后在views.py文件中的show_arg函数设置参数去接收正则的分组
+def show_arg(request,p1,p2):
+    return HttpResponse('数字 %d 字母 %s'%(p1,p2))
+2、关键参数，其中<>部分表示为这个参数定义的名称为pg的int型数据，
+path('delete/<int:pg>',views.show_arg),
+视图show_arg方法此时必须要有一个参数名为pg，否则报错
+def show_arg(request,pg):
+    return HttpResponse('编号为{pg}')
+

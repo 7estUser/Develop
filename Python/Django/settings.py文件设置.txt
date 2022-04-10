@@ -1,0 +1,51 @@
+ALLOWED_HOSTS
+    限定用户请求中的host值
+
+SECRET_KEY
+    用于防止CSRF
+    (不要直接在settings.py里输入字符串，从外部文件读取)
+
+INSTALLED_APPS = []
+    用于增删一个项目所包含的应用。只有对列入此项的APP, Django才会生成相应的数据表。
+    INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'test', #自定义APP
+    ]
+
+ROOT_URLCONF = 'test/urls.py'
+    主路由列表，前台发来请求会先去项目下的test/urls.py文件进行正则匹配找到应该执行的视图函数。
+    在test/urls.py 文件中进行配置 urlpatterns = []
+
+STATIC_URL
+    静态文件URL，
+    设置后可以通过使用{% static 'img/xxx.jpg' %}方式直接访问STATIC_ROOT文件夹里的静态文件。
+STATIC_ROOT
+    运行"python manage.py collectstatic"命令的时候，
+    Django会将各app下所有名为static的文件夹及其子目录复制收集到STATIC_ROOT
+STATICFILES_DIRS
+    运行"python manage.py collectstatic"命令的时候，
+    除了会复制名为static的文件夹及其目录，也会复制STATICFILES_DIRS里的文件
+
+MEDIA_URL
+    上传文件url
+    当MEDIA_ROOT发生改变的时候不用去更改前端模板中的内容
+MEDIA_ROOT
+    上传的文件保存路径，
+    和在ｍodels中写的上传的路径进行拼节形成最终文件上传的路径
+
+DATABASES = {                                   #数据库配置
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',　　# 数据库引擎
+        'NAME': 'django',　　　　　　　　　　　　　# 你要存储数据的库名，事先要创建之
+        'USER': 'django',　　　　　　　　　　　　　# 数据库用户名
+        'PASSWORD': 'django@123',　　　　　　　　 # 密码
+        'HOST': 'localhost',                     # 主机
+        'PORT': '3306',　　　　　　　　　　　　　　# 数据库使用的端口
+    }
+}
+
+MIDDLEWARE = []
+    中间件配置项
+    MIDDLEWARE 的顺序很重要,具有先后关系,因为有些中间件会依赖其他中间件。
+    常用内置中间件及说明
