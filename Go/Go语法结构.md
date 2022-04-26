@@ -147,6 +147,3 @@ go对象使用注意：*指针引用和值拷贝的区别
 	go env -w GOPATH=""  
 编译加执行  
 	go run test.go
-
-go install
-	
