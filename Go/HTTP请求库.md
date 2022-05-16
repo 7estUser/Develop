@@ -9,6 +9,8 @@
 client := resty.New()
 - //设置超时时间
 client.SetTimeout(15*time.Second)
+- //设置代理
+client.SetProxy("")
 - //.R()创建请求对象，设置header、body等，发送post请求
 resp,err := client.R().SetHeader("Content-Type","application/json").SetBody('{"id":1}').Post("www.t.com")
 ```
