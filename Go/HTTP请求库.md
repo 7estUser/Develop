@@ -1,4 +1,6 @@
 ## Resty
+#### 优点
+请求HTTPS等协议的时候，不用自己写跳过ssl证书认证，Resty可以直接连。
 #### 安装库
 `go get -u github.com/go-resty/resty/v2`
 #### demo
