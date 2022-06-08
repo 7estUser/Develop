@@ -1,4 +1,24 @@
-## Resty
+## 原生HTTP请求
+### POST请求
+```go
+tr := &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}} //https请求跳过证书验证
+client := &http.Client{Timeout: time.Second * 3,Transport: tr}    //实例化 http.client 结构体，设置请求超时时间为3s
+req, err := http.NewRequest("POST", url, strings.NewReader(requestdata)) //获取request实体（请求方式，请求地址，请求体）
+req.Header.Set(key, value) //设置post请求header数据
+resp, err := client.Do(req) //发送http请求
+resp.StatusCode //响应状态码
+defer resp.Body.Close() //关闭io流
+body, err := ioutil.ReadAll(resp.Body) //读取响应内容
+```
+### 使用代理
+```go
+proxy, err := url.Parse("http://127.0.0.1:8080")
+client := &http.Client{Transport: &http.Transport{
+      Proxy: http.ProxyURL(proxy),
+   }}
+```
+
+## Resty库
 #### 优点
 请求HTTPS等协议的时候，不用自己写跳过ssl证书认证，Resty可以直接连。
 #### 安装库
@@ -58,3 +78,6 @@ fmt.println(ti.DNSLookup)
 - ConnIdleTime：连接空闲时间；
 - RequestAttempt：请求执行流程中的请求次数，包括重试次数；
 - RemoteAddr：远程的服务地址，IP:PORT格式。
+
+#### 坑🕳️
+SetHeaders()设置请求头时,会把所有header属性名的首字母大写
