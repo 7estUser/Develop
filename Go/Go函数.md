@@ -1,5 +1,10 @@
 ## init函数(初始化函数)
-❗️每一个源文件都可以包含一个init函数，init函数校准main函数执行前执行。
+- ❗️init函数校准main函数执行前执行。❗️
+- 每个package可以定义多个init函数，甚至在同一个go文件也可以有多个init函数。
+- 如果一个包没有import其他包，则多个init按出现顺序初始化
+- 同一个包多个文件都有init函数则按文件名顺序初始化
+- 一般go fmt的话，会对import进行排序，这样子保证初始化行为的可再现性
+- 如果一个包有import其他包，则按依赖顺序从最里层包开始初始化
 ```go
 package main
 import "fmt"
