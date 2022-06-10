@@ -131,23 +131,20 @@ go对象使用注意：*指针引用和值拷贝的区别
 	}()
 	panic("异常信息") //后面的代码不会再执行
 ```
-## reflect反射：
-```go	
+## reflect反射：	
 	#只有interface类型才有反射,用来获取结构(类)的内部信息。
 	reflect.TypeOf() 可以获得任意值的类型对象(reflect.Type)
-		.Name() 对象类型名称	.Kind() 对象归属种类	
-		.NumField() 返回对象包含字段个数
-		.Field(i) 返回对象包含字段中第i个字段值对像（name，type，value：.Interface()）
-		#NumField()和Field(i)结合使用遍历结构体的每个字段
-		.NumMethod() 返回结构体定义的方法个数
-		.Method(i) 返回结构体的第i个方法 
-	reflect.ValueOf() 获取reflect.Value 对像，reflect.Value 与原值间可以通过值包装和值获取互相转化。
-```
-## concurrency并发:
-```go	
-	使用并发：通过 go 关键字来开启 goroutine 即可
-	go + 方法名
-```	
+		.Name() 对象类型名称  
+		.Kind() 对象归属种类	
+		.NumField() 返回对象包含字段个数  
+		.Field(i) 返回对象包含字段中第i个字段值对像（name，type，value：.Interface()）  
+		#NumField()和Field(i)结合使用遍历结构体的每个字段  
+		.NumMethod() 返回结构体定义的方法个数  
+		.Method(i) 返回结构体的第i个方法   
+	reflect.ValueOf() 获取reflect.Value 对像，reflect.Value 与原值间可以通过值包装和值获取互相转化。  
+## concurrency并发:	
+	使用并发：通过 go 关键字来开启 goroutine 即可  
+	`go + 方法名`
 ## channel通道：
 ```go	
 	#是goroutine沟通的桥梁，用于两个goroutine之间来通过传递一个指定类型的值来同步运行和通信。
