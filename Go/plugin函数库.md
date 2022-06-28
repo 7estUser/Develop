@@ -1,6 +1,6 @@
 ## plugin的go代码编写要求
 1. 包名称必须是main
-2. 没哟main函数
+2. 没有main函数
 3. 必须有可以导出（访问）的变量或者方法（也就是首字母大写）
 ## 编译成 .so 文件
 `go build -buildmode=plugin -o=test.so test.go`
