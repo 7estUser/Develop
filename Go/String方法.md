@@ -18,3 +18,26 @@
 `StringA == StringB`  
 > 不区分大小写  
 `strings.EqualFold(StringA, StringB)`  
+
+#### string转json
+⚠️必须要先知道json里面的类型，然后构建对应的结构体,string转json必须有对应的结构体。
+```go
+type jsonData struct {
+	Meta meta   `json":meta"`
+	Data []data `json":data"`
+}
+type meta struct {
+	Code    int    `json":code"`
+	Message string `json":message"`
+}
+
+type data struct {
+	Id          string `json":id"`
+	Name        string `json":name"`
+	Remote_addr string `json":remote_addr"`
+	Created_at  string `json":created_at"`
+}
+var repJson jsonData
+err := json.Unmarshal([]byte(responseData), &repJson)
+print(repJson.Data[0].Id)
+```
