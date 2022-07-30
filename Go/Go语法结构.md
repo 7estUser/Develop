@@ -58,7 +58,7 @@ go对象使用注意：*指针引用和值拷贝的区别
 ```
 ## 方法定义：
 ```go	
-	func funcName([parameter classType]) [return_type]{}
+	func funcName(parameter classType) [return_type]{}
 ```
 ❗️方法和类定义的区别：结构体(类)中的方法是在结构体(类)外定义的,且类定义的名字前是有括号，里面填写结构体类型  
 ⚠️[func init(){}是特殊的方法](Go函数.md)
