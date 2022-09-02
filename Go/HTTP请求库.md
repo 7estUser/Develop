@@ -17,6 +17,14 @@ client := &http.Client{Transport: &http.Transport{
       Proxy: http.ProxyURL(proxy),
    }}
 ```
+### 通过url下载文件到本地
+```go
+resp, err := http.Get("https://xxx")
+defer resp.Body.Close()
+outFile, err := os.Create("./test.csv")
+defer outFile.Close()
+_, err = io.Copy(outFile, resp.Body)
+```
 
 ## Resty库
 #### 优点
@@ -29,6 +37,8 @@ client := &http.Client{Transport: &http.Transport{
 client := resty.New()
 - //设置超时时间
 client.SetTimeout(15*time.Second)
+- //跳过https证书验证
+client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify:true})
 - //设置代理
 client.SetProxy("")
 - //.R()创建请求对象，设置header、body等，发送post请求
@@ -52,10 +62,10 @@ SetResult(&result)
 StatusCode()：	状态码
 Status()：		状态码和状态信息
 Cookies()：		服务器通过Set-Cookie首部设置的 cookie 信息
-Time()：			从发送请求到收到响应的时间
+Time()：		从发送请求到收到响应的时间
 ReceivedAt()：	接收到响应的时刻 
 Proto()：		协议
-Size()：			响应大小
+Size()：		响应大小
 Header()：		响应首部信息
 ```
 #### 辅助功能

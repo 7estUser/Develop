@@ -19,7 +19,7 @@
 > 不区分大小写  
 `strings.EqualFold(StringA, StringB)`  
 
-#### string转json
+#### string转typ
 ⚠️必须要先知道json里面的类型，然后构建对应的结构体,string转json必须有对应的结构体。
 ```go
 type jsonData struct {
