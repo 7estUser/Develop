@@ -1,9 +1,9 @@
 ## String字符串相关方法
 #### 转换
 > string转int  
-`strconv.Atoi(string)`  
+`i, _ := strconv.Atoi(string)`  
 > int转string  
-`strconv.Itoa(int)`
+`i, _ := strconv.Itoa(int)`
 
 #### 内容
 > 是否包含指定字符  
