@@ -175,4 +175,27 @@ go对象使用注意：*指针引用和值拷贝的区别
 	如果没有 default 子句，select 将阻塞，直到某个通信可以运行；Go 不会重新对 channel 或值进行求值。
 	可用空的select来阻塞main函数。
 ```
+## 命令行参数解析
+```go
+import "flag"
+var name strings
+var age int
+var is bool
+flag.StringVar(&name, "name", "张三", "姓名")   //绑定对象，命令行参数名称，默认值，参数说明
+flag.IntVar(&age, "age", 18, "年龄")
+flag.BoolVar(&married, "married", false, "婚否")
+flag.Parse()    //参数解析
+```
+## 语法糖
+### ... 的用法
+1. 第一个用法主要是用于函数有多个不定参数的情况，表示为可变参数，可以接受任意个数但相同类型的参数。
+```go
+func test1(args ...string) {} //可以接受任意个string参数
+```
+2. 第二个用法是slice可以被打散进行传递。
+```go
+var strss= []string{"qwr","234","yui"}
+var strss2= []string{ "qqq","aaa","zzz","zzz"}
+strss=append(strss,strss2...) //strss2的元素被打散一个个append进strss
+```
 ------------------------------------------------------------------------------------------
