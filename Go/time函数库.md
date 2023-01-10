@@ -9,9 +9,11 @@
 ```
 ## time 类型
 - time.ParseDuration("1h")：解析持续时间字符串  
-- Sub()：计算时间间隔
+- Sub()：计算时间间隔,计算结果是Duration类型
 - Zone()：返回时区和和偏移量(UTC以东的秒数)
 ## Duration 类型
 Duration：持续时间  ⚠️基本单位：Nanosecond(纳秒)  
 - Milliseconds()：以整数毫秒计数的形式查找持续时间  
 - Microseconds()：微秒	Minutes()：
+## 转换
+- time转Duration：`time.Duration(5*time.Second)`
