@@ -24,6 +24,8 @@
 `substr = strings.Trim(substr, " \t\r\n")`  
 > 按字符分割
 `lines := strings.Split(string(data), "\n")`  
+>去除字符串两端的空格
+`strings.TrimSpace(" abc d ")`
 
 #### 判断
 > 区分大小写  
