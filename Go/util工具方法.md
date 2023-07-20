@@ -11,7 +11,7 @@ n, _ := rand.Int(rand.Reader, big.NewInt(100))
 n.Int64()
 
 //随机字符串
-func RandomString(n int, allowedChars ...[]rune) string {
+func RandomString(length int) string {
    chars := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
    result := make([]byte, length)
    rand.Seed(time.Now().UnixNano())
